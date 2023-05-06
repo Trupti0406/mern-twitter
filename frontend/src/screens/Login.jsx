@@ -1,7 +1,47 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { BASE_URL } from "../config";
+import Alerter from "sweetalert2";
 
 export const Login = () => {
+  const [credentials, setCredentials] = useState({
+    username: "",
+    password: "",
+  });
+  const navigate = useNavigate();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(`${BASE_URL}/api/auth/login`, {
+        username: credentials.username,
+        password: credentials.password,
+      });
+      console.log(response.data);
+      Alerter.fire({
+        title: "Success!",
+        text: "User Logged In Successfully",
+        icon: "success",
+        confirmButtonText: "Ok",
+      });
+      navigate("/");
+    } catch (error) {
+      console.error(error);
+      Alerter.fire({
+        title: "Failed!",
+        text: "Enter valid credentials!",
+        icon: "error",
+        confirmButtonText: "Try again",
+      });
+    }
+  };
+
+  const onChange = (event) => {
+    setCredentials({
+      ...credentials,
+      [event.target.name]: event.target.value,
+    });
+  };
   return (
     <div className="container mt-3">
       <div className="row mt-md-5 d-flex justify-content-center align-items-center">
@@ -21,7 +61,7 @@ export const Login = () => {
                     Login
                   </p>
 
-                  <form className="mx-1 mx-md-4">
+                  <form className="mx-1 mx-md-4" onSubmit={handleSubmit}>
                     <div className="d-flex flex-row align-items-center mb-4">
                       <div className="form-outline flex-fill mb-0">
                         <label
@@ -31,10 +71,13 @@ export const Login = () => {
                           Username
                         </label>
                         <input
-                          type="password"
+                          type="text"
                           id="form3Example4cd"
                           className="form-control shadow-none"
                           placeholder="johndoe123"
+                          name="username"
+                          value={credentials.username}
+                          onChange={onChange}
                           required
                         />
                       </div>
@@ -52,6 +95,9 @@ export const Login = () => {
                           type="password"
                           id="form3Example4c"
                           className="form-control shadow-none"
+                          name="password"
+                          value={credentials.password}
+                          onChange={onChange}
                           required
                         />
                       </div>
@@ -60,7 +106,7 @@ export const Login = () => {
                     <div className="d-grid mb-4">
                       <button
                         className="btn btn-primary fw-semibold"
-                        type="button"
+                        type="submi"
                       >
                         Login
                       </button>

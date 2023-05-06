@@ -6,7 +6,7 @@ const { body, validationResult } = require("express-validator");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 router.post(
-  "/register",
+  "/api/auth/register",
   [
     body("name").isLength({ min: 2 }),
     body("email").isEmail(),
@@ -43,9 +43,12 @@ router.post(
 
 // Login Route
 router.post(
-  "/login",
+  "/api/auth/login",
   [
-    body("email").isEmail(),
+    body(
+      "username",
+      "Username must be in lowercase, user can use special characters and uderscore(_) for the same"
+    ).isLowercase(),
     body("password", "Password must be 5 or more characters").isLength({
       min: 5,
     }),
@@ -55,10 +58,10 @@ router.post(
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
-    let email = req.body.email;
+    let username = req.body.username;
 
     try {
-      let userData = await User.findOne({ email });
+      let userData = await User.findOne({ username });
       if (!userData) {
         return res
           .status(400)

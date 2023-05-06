@@ -1,7 +1,52 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { BASE_URL } from "../config";
+import Alerter from "sweetalert2";
 
 export const Register = () => {
+  const [credentials, setCredentials] = useState({
+    name: "",
+    email: "",
+    username: "",
+    password: "",
+  });
+  const navigate = useNavigate();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(`${BASE_URL}/api/auth/register`, {
+        name: credentials.name,
+        email: credentials.email,
+        username: credentials.username,
+        password: credentials.password,
+      });
+      console.log(response.data);
+      Alerter.fire({
+        title: "Success!",
+        text: "User Registered Successfully",
+        icon: "success",
+        confirmButtonText: "Ok",
+      });
+      navigate("/login");
+    } catch (error) {
+      console.error(error);
+      Alerter.fire({
+        title: "Failed!",
+        text: "Please enter valid details!",
+        icon: "error",
+        confirmButtonText: "Try again",
+      });
+    }
+  };
+
+  const onChange = (event) => {
+    setCredentials({
+      ...credentials,
+      [event.target.name]: event.target.value,
+    });
+  };
+
   return (
     <div className="container mt-3">
       <div className="row d-flex justify-content-center align-items-center">
@@ -21,7 +66,7 @@ export const Register = () => {
                     Register
                   </p>
 
-                  <form className="mx-1 mx-md-4">
+                  <form className="mx-1 mx-md-4" onSubmit={handleSubmit}>
                     <div className="d-flex flex-row align-items-center mb-4">
                       <div className="form-outline flex-fill mb-0">
                         <label
@@ -35,6 +80,9 @@ export const Register = () => {
                           id="form3Example1c"
                           className="form-control shadow-none"
                           placeholder="Full Name"
+                          name="name"
+                          value={credentials.name}
+                          onChange={onChange}
                           required
                         />
                       </div>
@@ -53,6 +101,9 @@ export const Register = () => {
                           id="form3Example3c"
                           className="form-control shadow-none"
                           placeholder="johndoe@gmail.com"
+                          name="email"
+                          value={credentials.email}
+                          onChange={onChange}
                           required
                         />
                       </div>
@@ -67,10 +118,13 @@ export const Register = () => {
                           Username
                         </label>
                         <input
-                          type="password"
+                          type="text"
                           id="form3Example4cd"
                           className="form-control shadow-none"
                           placeholder="johndoe12"
+                          name="username"
+                          value={credentials.username}
+                          onChange={onChange}
                           required
                         />
                       </div>
@@ -87,6 +141,9 @@ export const Register = () => {
                           type="password"
                           id="form3Example4c"
                           className="form-control shadow-none"
+                          name="password"
+                          value={credentials.password}
+                          onChange={onChange}
                           required
                         />
                       </div>
@@ -95,7 +152,7 @@ export const Register = () => {
                     <div className="d-grid mb-4">
                       <button
                         className="btn btn-primary fw-semibold"
-                        type="button"
+                        type="submit"
                       >
                         Register
                       </button>
