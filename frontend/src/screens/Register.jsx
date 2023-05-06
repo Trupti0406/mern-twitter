@@ -35,6 +35,7 @@ export const Register = () => {
                           id="form3Example1c"
                           className="form-control shadow-none"
                           placeholder="Full Name"
+                          required
                         />
                       </div>
                     </div>
@@ -52,6 +53,7 @@ export const Register = () => {
                           id="form3Example3c"
                           className="form-control shadow-none"
                           placeholder="johndoe@gmail.com"
+                          required
                         />
                       </div>
                     </div>
@@ -68,7 +70,8 @@ export const Register = () => {
                           type="password"
                           id="form3Example4cd"
                           className="form-control shadow-none"
-                          placeholder="@johndoe"
+                          placeholder="johndoe12"
+                          required
                         />
                       </div>
                     </div>
@@ -84,6 +87,7 @@ export const Register = () => {
                           type="password"
                           id="form3Example4c"
                           className="form-control shadow-none"
+                          required
                         />
                       </div>
                     </div>
