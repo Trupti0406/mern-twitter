@@ -13,3 +13,16 @@ code {
 }
 
 /* ================================= CSS For Sidebar ===========================*/
+.sidebar {
+  height: inherit !important;
+}
+
+@media only screen and (max-width: 576px) {
+  .sidebar {
+    height: 65px !important;
+  }
+}
+/* ======================== CSS For TweetCard component ===========================*/
+.card {
+  border-radius: 0 !important;
+}

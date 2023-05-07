@@ -22,7 +22,7 @@ export const Sidebar = () => {
               to="/"
               className="nav-link px-sm-0 px-2 text-black text-decoration-none"
             >
-              <i className="fa-solid fa-house fs-5 ps-sm-3"></i>
+              <i className="fa-solid fa-house fs-5 mx-3 mx-sm-0"></i>
               <span className="ms-1 d-none d-sm-inline fs-5">Home</span>
             </NavLink>
           </li>
@@ -31,7 +31,7 @@ export const Sidebar = () => {
               to="/profile"
               className="nav-link px-sm-0 px-2 text-black text-decoration-none"
             >
-              <i className="fa-solid fa-user fs-5 ps-sm-3"></i>
+              <i className="fa-solid fa-user fs-5 mx-3 mx-sm-0"></i>
               <span className="ms-1 d-none d-sm-inline fs-5">Profile</span>
             </NavLink>
           </li>
@@ -40,14 +40,14 @@ export const Sidebar = () => {
               to="/login"
               className="nav-link px-sm-0 px-2 text-black text-decoration-none"
             >
-              <i className="fa-solid fa-right-from-bracket fs-5 ps-sm-3"></i>
+              <i className="fa-solid fa-right-from-bracket fs-5 mx-3 mx-sm-0"></i>
               <span className="ms-1 d-none d-sm-inline fs-5">Logout</span>
             </NavLink>
           </li>
         </ul>
         <div className="py-sm-4 mt-sm-auto ms-auto ms-sm-0 flex-shrink-1">
           <img
-            src="https://github.com/mdo.png"
+            src="https://avatars.githubusercontent.com/u/92917582?s=40&v=4"
             alt="hugenerd"
             width="28"
             height="28"
