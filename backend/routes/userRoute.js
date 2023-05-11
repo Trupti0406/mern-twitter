@@ -5,6 +5,10 @@ const { JWT_SECRET } = require("../config");
 const { body, validationResult } = require("express-validator");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
+const authMiddleware = require("../middleware/authMiddleware");
+const userController = require("../controllers/userController");
+
+// Register Route
 router.post(
   "/api/auth/register",
   [
@@ -91,4 +95,18 @@ router.post(
     }
   }
 );
+
+// Get a single user detail
+router.get("/api/user/:id", authMiddleware, userController.getSingleUser);
+
+//Follow a user
+router.put("/api/user/:id/follow", authMiddleware, userController.followUser);
+
+//Unfollow a user
+router.put(
+  "/api/user/:id/unfollow",
+  authMiddleware,
+  userController.unfollowUser
+);
+
 module.exports = router;

@@ -20,7 +20,7 @@ export const TweetCard = () => {
             <div className="col-10">
               <div className="card-body">
                 <p>
-                  <i class="fa-solid fa-retweet pe-2" role="button"></i>
+                  <i className="fa-solid fa-retweet pe-2" role="button"></i>
                   <span>
                     Retweeted by{" "}
                     <span className="fw-semibold">@johndoe_13</span>
@@ -35,7 +35,7 @@ export const TweetCard = () => {
                     7th May 2023
                   </span>
                   <i
-                    class="fa-solid fa-trash fs-5 text-danger ms-md-5 ps-md-5"
+                    className="fa-solid fa-trash fs-5 text-danger ms-md-5 ps-md-5"
                     role="button"
                   ></i>
                 </p>
@@ -54,15 +54,15 @@ export const TweetCard = () => {
                 />
                 <div className="d-flex justify-content-start gap-1 gap-md-5 mt-2 fs-5">
                   <div className="like">
-                    <i class="fa-regular fa-heart pe-2" role="button"></i>
+                    <i className="fa-regular fa-heart pe-2" role="button"></i>
                     <span>3</span>
                   </div>
                   <div className="comment">
-                    <i class="fa-regular fa-comment pe-2" role="button"></i>
+                    <i className="fa-regular fa-comment pe-2" role="button"></i>
                     <span>5</span>
                   </div>
                   <div className="retweet">
-                    <i class="fa-solid fa-retweet pe-2" role="button"></i>
+                    <i className="fa-solid fa-retweet pe-2" role="button"></i>
                     <span>1</span>
                   </div>
                 </div>

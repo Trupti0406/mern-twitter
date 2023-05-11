@@ -13,7 +13,7 @@ export const Profile = () => {
             <span className="navbar-brand mb-0 h1 fw-bolder fs-3">Explore</span>
           </nav>
 
-          <div className="col-8 d-flex flex-column justify-content-center border pt-5 mx-auto">
+          <div className="col-8 d-flex flex-column justify-content-center  pt-5 mx-auto">
             <ProfileBio />
             <TweetCard />
           </div>

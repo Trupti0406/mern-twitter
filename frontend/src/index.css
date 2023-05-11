@@ -33,6 +33,6 @@ code {
 }
 @media only screen and (max-width: 576px) {
   .profile-pic {
-    bottom: 0 !important;
+    bottom: 50px !important;
   }
 }
