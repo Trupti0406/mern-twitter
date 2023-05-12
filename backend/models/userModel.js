@@ -44,6 +44,12 @@ const userSchema = new mongoose.Schema(
         ref: "User",
       },
     ],
+    tweets: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Tweet",
+      },
+    ],
   },
   { timestamps: true }
 );

@@ -109,4 +109,20 @@ router.put(
   userController.unfollowUser
 );
 
+// To Edit user details
+router.put("/api/user/:id", authMiddleware, userController.editUserDetails);
+
+// Get user tweetlist for a particular user
+router.post(
+  "/api/user/:id/tweets",
+  authMiddleware,
+  userController.getUserTweetsList
+);
+// For uploading the user's profile picture
+router.post(
+  "/api/user/:id/uploadpfp",
+  authMiddleware,
+  userController.uploadProfilePic
+);
+
 module.exports = router;
