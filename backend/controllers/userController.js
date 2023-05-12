@@ -1,7 +1,7 @@
 const User = require("../models/userModel");
 const upload = require("./uploadController");
-
 const { handleFileUpload } = require("./uploadController");
+
 // Getting single user
 exports.getSingleUser = async (req, res) => {
   try {
@@ -160,34 +160,6 @@ exports.uploadProfilePic = (req, res) => {
   const userId = req.params.id;
 
   handleFileUpload()(req, res, async (err) => {
-    if (err) {
-      return res.status(400).json({ error: err.message });
-    }
-
-    try {
-      const user = await User.findById(userId);
-      if (!user) {
-        return res.status(404).json({ error: "User not found." });
-      }
-
-      // Save the image location in the user's profilePicture field
-      user.profilePicture = `/images/${req.file.filename}`;
-      await user.save();
-
-      return res
-        .status(200)
-        .json({ message: "Profile picture uploaded successfully." });
-    } catch (error) {
-      return res.status(500).json({ error: "Server error." });
-    }
-  });
-};
-
-// Controller for handling the uploadProfilePic API
-exports.uploadProfilePic = (req, res) => {
-  const userId = req.params.id;
-
-  upload(req, res, async (err) => {
     if (err) {
       return res.status(400).json({ error: err.message });
     }
