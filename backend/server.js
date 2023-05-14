@@ -13,6 +13,7 @@ require("./models/tweetModel");
 // Requiring routes
 app.use(require("./routes/userRoute"));
 app.use(require("./routes/authRoute"));
+app.use(require("./routes/tweetRoute"));
 
 // Require and initialize the database connection
 require("./database/db");

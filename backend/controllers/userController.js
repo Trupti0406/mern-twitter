@@ -1,6 +1,5 @@
 const User = require("../models/userModel");
 const upload = require("./uploadController");
-const { handleFileUpload } = require("./uploadController");
 
 // Getting single user
 exports.getSingleUser = async (req, res) => {
@@ -156,10 +155,11 @@ exports.getUserTweetsList = async (req, res) => {
 };
 
 // This api is for uploading profile picture of a certain user
+
 exports.uploadProfilePic = (req, res) => {
   const userId = req.params.id;
 
-  handleFileUpload()(req, res, async (err) => {
+  upload(req, res, async (err) => {
     if (err) {
       return res.status(400).json({ error: err.message });
     }
