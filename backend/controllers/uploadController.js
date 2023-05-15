@@ -25,5 +25,4 @@ const fileFilter = (req, file, cb) => {
 
 // Multer upload instance
 const upload = multer({ storage, fileFilter }).single("profilePic");
-
 module.exports = upload;

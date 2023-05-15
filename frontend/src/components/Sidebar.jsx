@@ -1,7 +1,26 @@
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import Alerter from "sweetalert2";
 
 export const Sidebar = () => {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    Alerter.fire({
+      title: "Confirmation",
+      text: "Are you sure you want to logout?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes",
+      cancelButtonText: "No",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Clear user data from localStorage
+        localStorage.removeItem("authToken");
+        navigate("/login");
+      }
+    });
+  };
   return (
     <div className="sidebar col-12 col-sm-3 col-xl-2 px-sm-2 px-0 bg-light d-flex sticky-top">
       <div className="d-flex flex-sm-column flex-row flex-grow-1 align-items-center align-items-sm-start px-3 pt-2 text-white">
@@ -37,7 +56,7 @@ export const Sidebar = () => {
           </li>
           <li className="nav-item mb-sm-3">
             <NavLink
-              to="/login"
+              onClick={handleLogout}
               className="nav-link px-sm-0 px-2 text-black text-decoration-none"
             >
               <i className="fa-solid fa-right-from-bracket fs-5 mx-3 mx-sm-0"></i>

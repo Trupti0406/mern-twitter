@@ -5,7 +5,7 @@ const authController = require("../controllers/authController");
 
 // POST API for registering the user
 router.post(
-  "/register",
+  "/api/auth/register",
   [
     body("name").isLength({ min: 2 }),
     body("email").isEmail(),
@@ -22,7 +22,7 @@ router.post(
 
 // POST API for Login user
 router.post(
-  "/login",
+  "/api/auth/login",
   [
     body(
       "username",

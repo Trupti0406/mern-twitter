@@ -2,6 +2,7 @@ const { validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs");
 const User = require("../models/userModel");
 const jwt = require("jsonwebtoken");
+const { JWT_SECRET } = require("../config");
 
 exports.register = async (req, res) => {
   const errors = validationResult(req);
@@ -51,7 +52,7 @@ exports.login = async (req, res) => {
         id: userData.id,
       },
     };
-    const authToken = jwt.sign(data, process.env.JWT_SECRET);
+    const authToken = jwt.sign(data, JWT_SECRET);
     return res.json({ success: true, authToken: authToken });
   } catch (error) {
     console.log(error);
