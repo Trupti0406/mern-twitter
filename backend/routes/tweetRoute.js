@@ -44,4 +44,10 @@ router.post(
   tweetController.retweetTweet
 );
 
+router.post(
+  "/api/tweet/uploadTweetPicture",
+  authMiddleware,
+  tweetController.uploadTweetPicture
+);
+
 module.exports = router;

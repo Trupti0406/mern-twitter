@@ -1,5 +1,6 @@
 const multer = require("multer");
 const path = require("path");
+const cloudinary = require("cloudinary").v2;
 
 // Multer storage configuration
 const storage = multer.diskStorage({
@@ -55,6 +56,14 @@ exports.createTweet = async (req, res) => {
       if (req.file) {
         image = req.file.path;
       }
+
+      if (req?.file) {
+        var result = await cloudinary.uploader.upload(image, {
+          use_filename: true,
+        });
+        fs.unlinkSync(image);
+      }
+      console.log(result);
 
       // Create a new tweet object with content and image
       const tweet = new Tweet({
