@@ -1,9 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import Alerter from "sweetalert2";
 
 export const Sidebar = () => {
   const navigate = useNavigate();
+
+  const [userData, setUserData] = useState({});
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const storedUserData = JSON.parse(localStorage.getItem("userData"));
+        setUserData(storedUserData);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchUserData();
+  }, []);
 
   const handleLogout = () => {
     Alerter.fire({
@@ -15,8 +30,9 @@ export const Sidebar = () => {
       cancelButtonText: "No",
     }).then((result) => {
       if (result.isConfirmed) {
-        // Clear user data from localStorage
         localStorage.removeItem("authToken");
+        localStorage.removeItem("userData");
+
         navigate("/login");
       }
     });
@@ -66,14 +82,15 @@ export const Sidebar = () => {
         </ul>
         <div className="py-sm-4 mt-sm-auto ms-auto ms-sm-0 flex-shrink-1">
           <img
-            src="https://avatars.githubusercontent.com/u/92917582?s=40&v=4"
-            alt="hugenerd"
+            src={userData.profilePicture}
+            alt={`profile`}
             width="28"
             height="28"
             className="rounded-circle"
           />
           <span className="text-black fw-semibold d-none d-sm-inline mx-2">
-            trupti_04
+            {userData.username}
+            {userData.name}
           </span>
         </div>
       </div>

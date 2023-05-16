@@ -33,7 +33,7 @@ export const ProfileBio = () => {
             id="staticBackdrop1"
             data-bs-backdrop="static"
             data-bs-keyboard="false"
-            tabindex="-1"
+            tabIndex="-1"
             aria-labelledby="staticBackdropLabel"
             aria-hidden="true"
           >
@@ -100,7 +100,7 @@ export const ProfileBio = () => {
             id="staticBackdrop2"
             data-bs-backdrop="static"
             data-bs-keyboard="false"
-            tabindex="-1"
+            tabIndex="-1"
             aria-labelledby="staticBackdropLabel"
             aria-hidden="true"
           >

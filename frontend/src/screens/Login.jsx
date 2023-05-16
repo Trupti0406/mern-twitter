@@ -18,9 +18,11 @@ export const Login = () => {
         password: credentials.password,
       });
 
-      const { authToken } = response.data;
-      localStorage.setItem("authToken", authToken);
       // console.log(response.data);
+      const { user, token } = response.data.result;
+      localStorage.setItem("authToken", token);
+      localStorage.setItem("userData", JSON.stringify(user));
+
       Alerter.fire({
         title: "Success!",
         text: "User Logged In Successfully",
